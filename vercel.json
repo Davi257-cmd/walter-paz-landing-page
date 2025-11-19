@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
-  "installCommand": "rm -f package-lock.json 2>/dev/null || true && npm install --legacy-peer-deps",
+  "installCommand": "rm -rf package-lock.json node_modules 2>/dev/null; npm install --legacy-peer-deps",
   "framework": "vite",
   "rewrites": [
     {

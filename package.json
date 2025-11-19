@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check": "tsc -b --noEmit",
+    "preinstall": "rm -f package-lock.json 2>/dev/null || true",
     "postinstall": "echo 'Dependencies installed successfully'"
   },
   "dependencies": {
