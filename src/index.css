@@ -123,3 +123,10 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* Ocultar badge do trae */
+#trae-badge-plugin {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
