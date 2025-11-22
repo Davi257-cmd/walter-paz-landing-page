@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 interface BioSectionProps {
   name: string
@@ -23,6 +23,10 @@ export const BioSection = ({
   stats,
   className
 }: BioSectionProps) => {
+  const [photoRef, photoVisible] = useIntersectionObserver()
+  const [contentRef, contentVisible] = useIntersectionObserver()
+  const [badgeRef, badgeVisible] = useIntersectionObserver({ rootMargin: '-30px' })
+
   return (
     <section 
       id="sobre" 
@@ -40,24 +44,20 @@ export const BioSection = ({
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Photo Side */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative group"
+          <div
+            ref={photoRef}
+            className={cn(
+              "relative group optimize-render",
+              photoVisible && "fade-in-left"
+            )}
           >
             {/* Decorative Elements */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-red-600/20 to-transparent rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-red-600/20 to-transparent rounded-2xl blur-2xl" />
             
             {/* Photo Container */}
             <div className="relative aspect-square max-w-xs md:max-w-sm mx-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-transparent rounded-2xl" />
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="relative h-full rounded-2xl overflow-hidden border border-red-600/20 shadow-2xl shadow-red-600/10"
-              >
+              <div className="relative h-full rounded-2xl overflow-hidden border border-red-600/20 shadow-2xl shadow-red-600/10 transition-transform duration-200 hover:scale-[1.02]">
                 <img
                   src={photoUrl}
                   alt={name}
@@ -65,88 +65,90 @@ export const BioSection = ({
                   loading="lazy"
                   width="300"
                   height="300"
+                  decoding="async"
                 />
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              </motion.div>
+              </div>
 
               {/* Floating Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="absolute -bottom-2 md:-bottom-6 -right-2 md:-right-6 bg-red-600 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-lg shadow-red-600/50 border border-red-500"
+              <div
+                ref={badgeRef}
+                className={cn(
+                  "absolute -bottom-2 md:-bottom-6 -right-2 md:-right-6 bg-red-600 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-lg shadow-red-600/50 border border-red-500",
+                  badgeVisible && "scale-in"
+                )}
+                style={{ animationDelay: '0.2s' }}
               >
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5" />
                   <span className="font-bold">Especialista</span>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Content Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
+          <div
+            ref={contentRef}
+            className={cn(
+              "space-y-8 optimize-render",
+              contentVisible && "fade-in-right"
+            )}
           >
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full text-red-500 text-sm font-medium"
+            <div
+              className={cn(
+                "inline-flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full text-red-500 text-sm font-medium",
+                contentVisible && "fade-in-up"
+              )}
+              style={{ animationDelay: '0.1s' }}
             >
-              <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-red-600 rounded-full" />
               Conheça o especialista
-            </motion.div>
+            </div>
 
             {/* Name & Title */}
             <div className="space-y-3">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="text-5xl md:text-6xl font-bold text-white"
+              <h2
+                className={cn(
+                  "text-5xl md:text-6xl font-bold text-white",
+                  contentVisible && "fade-in-up"
+                )}
+                style={{ animationDelay: '0.2s' }}
               >
                 {name}
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="text-2xl text-red-600 font-semibold"
+              </h2>
+              <p
+                className={cn(
+                  "text-2xl text-red-600 font-semibold",
+                  contentVisible && "fade-in-up"
+                )}
+                style={{ animationDelay: '0.3s' }}
               >
                 {title}
-              </motion.p>
+              </p>
             </div>
 
             {/* Bio Text */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="text-lg text-gray-300 leading-relaxed"
+            <p
+              className={cn(
+                "text-lg text-gray-300 leading-relaxed",
+                contentVisible && "fade-in-up"
+              )}
+              style={{ animationDelay: '0.4s' }}
             >
               {bio}
-            </motion.p>
+            </p>
 
             {/* Stats */}
             {stats && stats.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.7 }}
-                className="grid grid-cols-3 gap-6 py-6"
+              <div
+                className={cn(
+                  "grid grid-cols-3 gap-6 py-6",
+                  contentVisible && "fade-in-up"
+                )}
+                style={{ animationDelay: '0.5s' }}
               >
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
@@ -158,32 +160,29 @@ export const BioSection = ({
                     </div>
                   </div>
                 ))}
-              </motion.div>
+              </div>
             )}
 
             {/* CTA */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8 }}
+            <button
               onClick={onCtaClick}
-              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-full transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/50 overflow-hidden"
+              className={cn(
+                "group relative inline-flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-full transition-all duration-200 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/50 hover:scale-[1.02] active:scale-[0.98]",
+                contentVisible && "fade-in-up"
+              )}
+              style={{ animationDelay: '0.6s' }}
             >
-              {/* Shine Effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              
               <span className="relative z-10">{ctaText}</span>
-              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
+            </button>
 
             {/* Trust Badge */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.9 }}
-              className="text-sm text-gray-500 flex items-center gap-2"
+            <p
+              className={cn(
+                "text-sm text-gray-500 flex items-center gap-2",
+                contentVisible && "fade-in-up"
+              )}
+              style={{ animationDelay: '0.7s' }}
             >
               <span className="inline-flex items-center gap-1">
                 ✓ Certificado Google Ads
@@ -192,8 +191,8 @@ export const BioSection = ({
               <span className="inline-flex items-center gap-1">
                 ✓ Meta Blueprint
               </span>
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -1,22 +1,27 @@
+import { useRef, useEffect } from 'react'
+
 export default function VideoBackground() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
+    }
+  }, [])
+
   return (
     <>
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-cover"
         style={{
           filter: 'brightness(0.5)',
-        }}
-        onLoadedData={(e) => {
-          // Garantir que o vídeo seja reproduzido
-          const video = e.currentTarget
-          video.play().catch(() => {
-            // Ignorar erros de autoplay
-          })
+          willChange: 'auto',
         }}
       >
         <source src="/video/background.mp4" type="video/mp4" />

@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TrendingUp, Users, Target, Phone, Menu, X, ChevronDown, Instagram, Linkedin, Twitter } from 'lucide-react'
 
-import LightingEffects from '@/components/LightingEffects'
 import { AvatarCircles } from '@/components/ui/avatar-circles'
 import FuturisticHero from '@/components/FuturisticHero'
 import AnimatedMarqueeHero from '@/components/AnimatedMarqueeHero'
 import { BioSection } from '@/components/BioSection'
 import VideoBackground from '@/components/VideoBackground'
 
-const WhatsAppButton = ({ text = "Fale comigo no WhatsApp", className = "", size = "normal" }) => {
+const WhatsAppButton = memo(({ text = "Fale comigo no WhatsApp", className = "", size = "normal" }: { text?: string; className?: string; size?: string }) => {
   const phoneNumber = "5585985271854"
-  const message = encodeURIComponent("Olá, vim pelo site e quero aumentar minhas vendas com tráfego pago!")
+  const message = useMemo(() => encodeURIComponent("Olá, vim pelo site e quero aumentar minhas vendas com tráfego pago!"), [])
+  const href = useMemo(() => `https://wa.me/${phoneNumber}?text=${message}`, [message])
   
   const sizeClasses = size === "small" ? "text-sm px-4 py-2" : "py-3 px-6"
   
   return (
     <motion.a
-      href={`https://wa.me/${phoneNumber}?text=${message}`}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold ${sizeClasses} rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${className}`}
@@ -30,7 +30,8 @@ const WhatsAppButton = ({ text = "Fale comigo no WhatsApp", className = "", size
       {text}
     </motion.a>
   )
-}
+})
+WhatsAppButton.displayName = 'WhatsAppButton'
 
 const AnimatedCounter = ({ end, duration = 2, prefix = "", suffix = "" }) => {
   const [count, setCount] = useState(0)
@@ -117,6 +118,9 @@ const Header = () => {
                 maxWidth: '100px'
               }}
               loading="eager"
+              width="100"
+              height="40"
+              fetchPriority="high"
             />
           </div>
 
@@ -318,7 +322,7 @@ export default function Home() {
         photoUrl="/logo-walteree.png"
         ctaText="Vamos conversar sobre seu negócio"
         onCtaClick={() => {
-          const phoneNumber = "5599985271854"
+          const phoneNumber = "5585985271854"
           const message = encodeURIComponent("Olá Walter! Vi seu site e quero saber mais sobre tráfego pago para meu negócio.")
           window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
         }}

@@ -127,11 +127,12 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           className="flex gap-4"
           animate={{
             x: ["-100%", "0%"],
-            transition: {
-              ease: "linear",
-              duration: 40,
-              repeat: Infinity,
-            },
+          }}
+          transition={{
+            ease: "linear",
+            duration: 40,
+            repeat: Infinity,
+            repeatType: "loop",
           }}
         >
           {duplicatedImages.map((src, index) => (
@@ -139,7 +140,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               key={index}
               className="relative flex-shrink-0 overflow-hidden shadow-lg bg-gray-900/50"
               style={{
-                rotate: `${(index % 2 === 0 ? -2 : 5)}deg`,
+                transform: `rotate(${index % 2 === 0 ? -2 : 5}deg)`,
                 width: '510px',
                 height: '510px',
                 borderRadius: '24px',

@@ -6,15 +6,31 @@ export default function Background3D() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    let rafId: number
+    let lastX = 0
+    let lastY = 0
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 30,
-        y: (e.clientY / window.innerHeight - 0.5) * 30
-      });
+      if (rafId) cancelAnimationFrame(rafId)
+      
+      rafId = requestAnimationFrame(() => {
+        const newX = (e.clientX / window.innerWidth - 0.5) * 30
+        const newY = (e.clientY / window.innerHeight - 0.5) * 30
+        
+        // Throttle updates
+        if (Math.abs(newX - lastX) > 1 || Math.abs(newY - lastY) > 1) {
+          setMousePosition({ x: newX, y: newY })
+          lastX = newX
+          lastY = newY
+        }
+      })
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, []);
 
   return (

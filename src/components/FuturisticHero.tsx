@@ -10,30 +10,44 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
   onCtaClick?: () => void
 }) => {
   const [subtitleVisible, setSubtitleVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const timeout = setTimeout(() => setSubtitleVisible(true), 300);
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20
-      });
-    };
+  // Mouse tracking desabilitado para melhor performance
+  // useEffect(() => {
+  //   let rafId: number
+  //   let lastX = 0
+  //   let lastY = 0
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  //   const handleMouseMove = (e: MouseEvent) => {
+  //     if (rafId) cancelAnimationFrame(rafId)
+      
+  //     rafId = requestAnimationFrame(() => {
+  //       const newX = (e.clientX / window.innerWidth - 0.5) * 20
+  //       const newY = (e.clientY / window.innerHeight - 0.5) * 20
+      
+  //       if (Math.abs(newX - lastX) > 0.5 || Math.abs(newY - lastY) > 0.5) {
+  //         setMousePosition({ x: newX, y: newY })
+  //         lastX = newX
+  //         lastY = newY
+  //       }
+  //     })
+  //   };
+
+  //   window.addEventListener('mousemove', handleMouseMove, { passive: true });
+  //   return () => {
+  //     window.removeEventListener('mousemove', handleMouseMove);
+  //     if (rafId) cancelAnimationFrame(rafId)
+  //   }
+  // }, []);
 
   return (
     <div className="h-screen relative overflow-hidden">
-      {/* Subtle animated background effects - minimal to not compete with video background */}
+      {/* Grid pattern estático - sem animação para melhor performance */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Very subtle grid pattern */}
         <div 
           className="absolute inset-0 opacity-5"
           style={{
@@ -42,7 +56,6 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
               linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
             `,
             backgroundSize: '50px 50px',
-            transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`
           }}
         />
       </div>
@@ -50,7 +63,7 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
       {/* Content Overlay */}
       <div className="relative z-10 h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Title - Sem animação */}
+          {/* Title - Sem animação, sem motion */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white">
             {title}
           </h1>
