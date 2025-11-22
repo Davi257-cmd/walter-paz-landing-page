@@ -48,7 +48,7 @@ export const BioSection = ({
             ref={photoRef}
             className={cn(
               "relative group optimize-render",
-              photoVisible ? "fade-in" : "opacity-0"
+              photoVisible ? "fade-in-left" : "opacity-0"
             )}
           >
             {/* Decorative Elements */}
@@ -77,7 +77,7 @@ export const BioSection = ({
                 ref={badgeRef}
                 className={cn(
                   "absolute -bottom-2 md:-bottom-6 -right-2 md:-right-6 bg-red-600 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-lg shadow-red-600/50 border border-red-500",
-                  badgeVisible ? "fade-in" : "opacity-0"
+                  badgeVisible ? "scale-in" : "opacity-0"
                 )}
                 style={{ animationDelay: '0.2s' }}
               >
@@ -94,14 +94,14 @@ export const BioSection = ({
             ref={contentRef}
             className={cn(
               "space-y-8 optimize-render",
-              contentVisible ? "fade-in" : "opacity-0"
+              contentVisible ? "fade-in-right" : "opacity-0"
             )}
           >
             {/* Badge */}
             <div
               className={cn(
                 "inline-flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-600/20 rounded-full text-red-500 text-sm font-medium",
-                contentVisible ? "fade-in" : "opacity-0"
+                contentVisible ? "fade-in-up" : "opacity-0"
               )}
               style={{ animationDelay: '0.1s' }}
             >
@@ -114,7 +114,7 @@ export const BioSection = ({
               <h2
                 className={cn(
                   "text-5xl md:text-6xl font-bold text-white",
-                  contentVisible ? "fade-in" : "opacity-0"
+                  contentVisible ? "fade-in-up" : "opacity-0"
                 )}
                 style={{ animationDelay: '0.2s' }}
               >
@@ -123,7 +123,7 @@ export const BioSection = ({
               <p
                 className={cn(
                   "text-2xl text-red-600 font-semibold",
-                  contentVisible ? "fade-in" : "opacity-0"
+                  contentVisible ? "fade-in-up" : "opacity-0"
                 )}
                 style={{ animationDelay: '0.3s' }}
               >
@@ -135,7 +135,7 @@ export const BioSection = ({
             <p
               className={cn(
                 "text-lg text-gray-300 leading-relaxed",
-                contentVisible ? "fade-in" : "opacity-0"
+                contentVisible ? "fade-in-up" : "opacity-0"
               )}
               style={{ animationDelay: '0.4s' }}
             >
@@ -147,7 +147,7 @@ export const BioSection = ({
               <div
                 className={cn(
                   "grid grid-cols-3 gap-6 py-6",
-                  contentVisible ? "fade-in" : "opacity-0"
+                  contentVisible ? "fade-in-up" : "opacity-0"
                 )}
                 style={{ animationDelay: '0.5s' }}
               >
@@ -169,7 +169,7 @@ export const BioSection = ({
               onClick={onCtaClick}
               className={cn(
                 "group relative inline-flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-full transition-all duration-200 shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/50 hover:scale-[1.02] active:scale-[0.98]",
-                contentVisible ? "fade-in" : "opacity-0"
+                contentVisible ? "fade-in-up" : "opacity-0"
               )}
               style={{ animationDelay: '0.6s' }}
             >
@@ -181,7 +181,7 @@ export const BioSection = ({
             <p
               className={cn(
                 "text-sm text-gray-500 flex items-center gap-2",
-                contentVisible ? "fade-in" : "opacity-0"
+                contentVisible ? "fade-in-up" : "opacity-0"
               )}
               style={{ animationDelay: '0.7s' }}
             >
