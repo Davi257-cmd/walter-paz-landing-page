@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
   options?: IntersectionObserverInit
-) {
+): [React.RefObject<T>, boolean] {
   const [isIntersecting, setIsIntersecting] = useState(false)
   const [hasIntersected, setHasIntersected] = useState(false)
   const elementRef = useRef<T>(null)
@@ -32,7 +32,8 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
     return () => {
       observer.disconnect()
     }
-  }, [hasIntersected, options])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasIntersected])
 
   return [elementRef, isIntersecting] as const
 }

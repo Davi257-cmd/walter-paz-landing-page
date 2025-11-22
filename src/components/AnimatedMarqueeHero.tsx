@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -150,6 +148,9 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 src={src}
                 alt={`Showcase image ${index + 1}`}
                 className="w-full h-full object-contain"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
               />
             </div>
           ))}

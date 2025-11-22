@@ -1,12 +1,11 @@
-import { useState, useEffect, useMemo, memo } from 'react'
+import { useState, useEffect, useMemo, memo, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { TrendingUp, Users, Target, Phone, Menu, X, ChevronDown, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { TrendingUp, Users, Target, Phone, Menu, X, ChevronDown } from 'lucide-react'
 
 import { AvatarCircles } from '@/components/ui/avatar-circles'
 import FuturisticHero from '@/components/FuturisticHero'
 import AnimatedMarqueeHero from '@/components/AnimatedMarqueeHero'
 import { BioSection } from '@/components/BioSection'
-import VideoBackground from '@/components/VideoBackground'
 
 const WhatsAppButton = memo(({ text = "Fale comigo no WhatsApp", className = "", size = "normal" }: { text?: string; className?: string; size?: string }) => {
   const phoneNumber = "5585985271854"
@@ -108,7 +107,7 @@ const Header = () => {
          
           <div className="flex items-center">
             <img 
-              src="/logo-walteree.png" 
+              src="/logo-walter-otmz.svg" 
               alt="Walter Paz - Gestor de Tráfego" 
               className="object-contain drop-shadow-lg"
               style={{ 
@@ -120,7 +119,8 @@ const Header = () => {
               loading="eager"
               width="100"
               height="40"
-              fetchPriority="high"
+              fetchpriority="high"
+              decoding="sync"
             />
           </div>
 
@@ -198,10 +198,17 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeFilter, setActiveFilter] = useState('conversas')
   const [expandedFaqs, setExpandedFaqs] = useState<number[]>([]) // Array of expanded FAQ indices
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
+
+  const handleVideoLoadedData = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
+    }
+  }
 
   const toggleFaq = (index: number) => {
     setExpandedFaqs(prev => 
@@ -279,10 +286,13 @@ export default function Home() {
       <section id="home" className="relative min-h-screen overflow-hidden bg-black">
         {/* Video Background - z-0 */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="metadata"
+          onLoadedData={handleVideoLoadedData}
           className="absolute inset-0 w-full h-full object-cover z-0"
           style={{ filter: 'brightness(0.5)' }}
         >
@@ -319,7 +329,7 @@ export default function Home() {
         name="Walter Paz"
         title="Gestor de Tráfego Pago"
         bio="Com anos de experiência transformando investimentos em resultados reais, ajudo empresas e empreendedores a escalarem seus negócios através de estratégias avançadas de tráfego pago. Minha missão é colocar seu negócio na frente de quem realmente importa: seus clientes ideais."
-        photoUrl="/logo-walteree.png"
+        photoUrl="/logo-walter-otmz.svg"
         ctaText="Vamos conversar sobre seu negócio"
         onCtaClick={() => {
           const phoneNumber = "5585985271854"

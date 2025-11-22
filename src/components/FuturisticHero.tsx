@@ -1,5 +1,3 @@
-'use client';
-
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
@@ -63,8 +61,8 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
       {/* Content Overlay */}
       <div className="relative z-10 h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Title - Sem animação, sem motion */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white">
+          {/* Title - Completamente estático, sem animação */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white" style={{ animation: 'none', transition: 'none' }}>
             {title}
           </h1>
 
@@ -77,6 +75,7 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
               y: subtitleVisible ? 0 : 20 
             }}
             transition={{ duration: 0.8, delay: 0.5 }}
+            style={{ willChange: subtitleVisible ? 'auto' : 'transform, opacity' }}
           >
             {subtitle}
           </motion.div>
@@ -90,6 +89,7 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
               y: subtitleVisible ? 0 : 20 
             }}
             transition={{ duration: 0.6, delay: 0.8 }}
+            style={{ willChange: subtitleVisible ? 'auto' : 'transform, opacity' }}
           >
             <motion.button 
               onClick={onCtaClick}

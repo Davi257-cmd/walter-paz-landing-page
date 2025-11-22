@@ -16,11 +16,11 @@ export function AvatarCircles({
 }: AvatarCirclesProps) {
   // Imagens reais de clientes
   const clientImages = [
-    "/person/imagem 1.png",
-    "/person/imagem 2.png",
-    "/person/imagem 3.png",
-    "/person/imagem 4.png",
-    "/person/imagem 5.png"
+    "/person/person.png",
+    "/person/person (1).png",
+    "/person/person (2).png",
+    "/person/person (3).png",
+    "/person/person (4).png"
   ]
   
   return (
@@ -39,6 +39,8 @@ export function AvatarCircles({
               loading="lazy"
               width="48"
               height="48"
+              decoding="async"
+              fetchpriority={index === 0 ? "low" : "auto"}
             />
           </div>
         ))}
