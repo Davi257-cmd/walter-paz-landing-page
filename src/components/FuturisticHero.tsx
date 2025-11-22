@@ -9,20 +9,13 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
   ctaText: string
   onCtaClick?: () => void
 }) => {
-  const titleWords = title.split(' ');
-  const [visibleWords, setVisibleWords] = useState(0);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (visibleWords < titleWords.length) {
-      const timeout = setTimeout(() => setVisibleWords(visibleWords + 1), 600);
-      return () => clearTimeout(timeout);
-    } else {
-      const timeout = setTimeout(() => setSubtitleVisible(true), 800);
-      return () => clearTimeout(timeout);
-    }
-  }, [visibleWords, titleWords.length]);
+    const timeout = setTimeout(() => setSubtitleVisible(true), 300);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -57,28 +50,10 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
       {/* Content Overlay */}
       <div className="relative z-10 h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Title */}
-          <div className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6">
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-white">
-              {titleWords.map((word, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: index < visibleWords ? 1 : 0, 
-                    y: index < visibleWords ? 0 : 20 
-                  }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: index * 0.13,
-                    ease: "easeOut"
-                  }}
-                >
-                  {word}
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          {/* Title - Sem animação */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white">
+            {title}
+          </h1>
 
           {/* Subtitle */}
           <motion.div 

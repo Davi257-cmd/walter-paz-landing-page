@@ -51,7 +51,7 @@ export const BioSection = ({
             <div className="absolute -inset-4 bg-gradient-to-r from-red-600/20 to-transparent rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
             
             {/* Photo Container */}
-            <div className="relative aspect-square max-w-md mx-auto">
+            <div className="relative aspect-square max-w-xs md:max-w-sm mx-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-transparent rounded-2xl" />
               <motion.div
                 whileHover={{ scale: 1.02 }}
@@ -61,10 +61,10 @@ export const BioSection = ({
                 <img
                   src={photoUrl}
                   alt={name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain p-4"
                   loading="lazy"
-                  width="400"
-                  height="400"
+                  width="300"
+                  height="300"
                 />
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

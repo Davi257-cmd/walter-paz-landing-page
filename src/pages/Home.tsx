@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, TrendingUp, Users, Target, Phone, Menu, X, ChevronDown, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { TrendingUp, Users, Target, Phone, Menu, X, ChevronDown, Instagram, Linkedin, Twitter } from 'lucide-react'
 
 import LightingEffects from '@/components/LightingEffects'
 import { AvatarCircles } from '@/components/ui/avatar-circles'
@@ -10,7 +10,7 @@ import { BioSection } from '@/components/BioSection'
 import VideoBackground from '@/components/VideoBackground'
 
 const WhatsAppButton = ({ text = "Fale comigo no WhatsApp", className = "", size = "normal" }) => {
-  const phoneNumber = "5599985271854"
+  const phoneNumber = "5585985271854"
   const message = encodeURIComponent("Olá, vim pelo site e quero aumentar minhas vendas com tráfego pago!")
   
   const sizeClasses = size === "small" ? "text-sm px-4 py-2" : "py-3 px-6"
@@ -24,7 +24,9 @@ const WhatsAppButton = ({ text = "Fale comigo no WhatsApp", className = "", size
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <MessageCircle className="w-5 h-5" />
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
       {text}
     </motion.a>
   )
@@ -105,12 +107,16 @@ const Header = () => {
          
           <div className="flex items-center">
             <img 
-              src="/logo-transparent.svg" 
+              src="/logo-walteree.png" 
               alt="Walter Paz - Gestor de Tráfego" 
-              className="h-12 md:h-16 w-auto object-contain drop-shadow-lg"
+              className="object-contain drop-shadow-lg"
+              style={{ 
+                height: '40px',
+                width: 'auto',
+                maxHeight: '40px',
+                maxWidth: '100px'
+              }}
               loading="eager"
-              width="120"
-              height="64"
             />
           </div>
 
@@ -289,7 +295,7 @@ export default function Home() {
             subtitle="Descubra como receber clientes qualificados todos os dias no seu WhatsApp querendo comprar."
             ctaText="Fale comigo no WhatsApp"
             onCtaClick={() => {
-              const phoneNumber = "5599985271854"
+              const phoneNumber = "5585985271854"
               const message = encodeURIComponent("Olá, vim pelo site e quero aumentar minhas vendas com tráfego pago!")
               window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
             }}
@@ -309,7 +315,7 @@ export default function Home() {
         name="Walter Paz"
         title="Gestor de Tráfego Pago"
         bio="Com anos de experiência transformando investimentos em resultados reais, ajudo empresas e empreendedores a escalarem seus negócios através de estratégias avançadas de tráfego pago. Minha missão é colocar seu negócio na frente de quem realmente importa: seus clientes ideais."
-        photoUrl="/logo-walter.jpeg"
+        photoUrl="/logo-walteree.png"
         ctaText="Vamos conversar sobre seu negócio"
         onCtaClick={() => {
           const phoneNumber = "5599985271854"
@@ -331,35 +337,14 @@ export default function Home() {
           description="Números reais de clientes reais que investiram em tráfego pago e transformaram seus negócios"
           ctaText="Quero resultados como esses"
           images={[
-            '/resultados/470902323_1332813677711739_5023683682626252577_n.webp',
-            '/resultados/470984203_1549150982378919_8674907044157820447_n.webp',
-            '/resultados/470938541_604545432022837_7794967710803877419_n.webp',
-            '/resultados/569765488_18078633515115576_4755223818378131160_n.webp',
-            '/resultados/470901557_1264596634759546_631726283652448975_n.webp',
-            '/resultados/470985839_595813273027841_5510729869386539933_n.webp',
-            '/resultados/470901154_974419844741302_7499737479413494502_n.webp',
-            '/resultados/470920448_1096293438668089_152318866066448172_n.webp',
-            '/resultados/470935199_1988914664939438_4860948170448919497_n.webp',
-            '/resultados/470984846_1240834543878819_4025142986124062882_n.webp',
-            '/resultados/470902206_593960533116124_6510219496411925452_n.webp',
-            '/resultados/471261995_609161864834213_1489417952713292269_n.webp',
-            '/resultados/470901557_8849447535173595_7710984458097679572_n.webp',
-            '/resultados/470920472_1117781820061245_4088952791721250472_n.webp',
-            '/resultados/470987557_1773407763501800_7181151473286857613_n.webp',
-            '/resultados/470894549_985835236704831_1214158522827234494_n.webp',
-            '/resultados/470945757_902197321896116_4595497434212998085_n.webp',
-            '/resultados/470935218_1347588636212192_2106256117713683733_n (1).webp',
-            '/resultados/470921840_8630655433698561_2433909664451228401_n.webp',
-            '/resultados/470914962_2867365433431371_2897640002568386785_n.webp',
-            '/resultados/470984733_482444127746557_7424229038693177116_n.webp',
-            '/resultados/471177110_1383714156346712_8945127454565746462_n.webp',
-            '/resultados/469582627_1297055694670564_3055216377634073111_n.webp',
-            '/resultados/469370406_2114981482237653_6093504426641413942_n.webp',
-            '/resultados/469576824_859813233029864_4638694112831274460_n.webp',
-            '/resultados/469409018_1243784676828834_4564669771212724907_n.webp',
-            '/resultados/469683282_1010040584215219_5460009796132708837_n.webp',
-            '/resultados/469558080_1133384288487706_7061801853265053392_n.webp',
-            '/resultados/469447630_1600388183911076_7537983105308848988_n.webp',
+            '/resultados/IMG-20251122-WA0045.jpg',
+            '/resultados/IMG-20251122-WA0046.jpg',
+            '/resultados/IMG-20251122-WA0047.jpg',
+            '/resultados/IMG-20251122-WA0048.jpg',
+            '/resultados/IMG-20251122-WA0049.jpg',
+            '/resultados/IMG-20251122-WA0050.jpg',
+            '/resultados/IMG-20251122-WA0051.jpg',
+            '/resultados/IMG-20251122-WA0052.jpg',
           ]}
         />
       </section>
@@ -486,10 +471,12 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-gray-400">
                   <Phone className="w-4 h-4" />
-                  <span>(55) 99985-271854</span>
+                  <span>85 9 8527-1854</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
-                  <MessageCircle className="w-4 h-4" />
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
                   <span>WhatsApp</span>
                 </div>
               </div>
