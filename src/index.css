@@ -215,3 +215,17 @@ html {
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+/* Prevenir flash de conteúdo não estilizado (FOUC) */
+.optimize-render:not(.fade-in-left):not(.fade-in-right):not(.fade-in-up):not(.scale-in) {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* Quando a animação é aplicada, remover a transição para evitar conflito */
+.fade-in-left,
+.fade-in-right,
+.fade-in-up,
+.scale-in {
+  transition: none !important;
+}

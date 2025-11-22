@@ -136,11 +136,9 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           {duplicatedImages.map((src, index) => (
             <div
               key={index}
-              className="relative flex-shrink-0 overflow-hidden shadow-lg bg-gray-900/50"
+              className="relative flex-shrink-0 overflow-hidden shadow-lg bg-gray-900/50 w-[300px] h-[300px] md:w-[510px] md:h-[510px]"
               style={{
                 transform: `rotate(${index % 2 === 0 ? -2 : 5}deg)`,
-                width: '510px',
-                height: '510px',
                 borderRadius: '24px',
               }}
             >

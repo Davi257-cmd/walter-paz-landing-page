@@ -6,18 +6,40 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
   const [isIntersecting, setIsIntersecting] = useState(false)
   const [hasIntersected, setHasIntersected] = useState(false)
   const elementRef = useRef<T>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
 
-    const observer = new IntersectionObserver(
+    // Verificar se já está visível no carregamento inicial (sem delay)
+    const checkInitialVisibility = () => {
+      const rect = element.getBoundingClientRect()
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+      const isVisible = rect.top < viewportHeight + 100 && rect.bottom > -100
+      
+      if (isVisible && !hasIntersected) {
+        setIsIntersecting(true)
+        setHasIntersected(true)
+        return true
+      }
+      return false
+    }
+
+    // Verificar imediatamente
+    if (checkInitialVisibility()) {
+      return // Se já está visível, não precisa do observer
+    }
+
+    // Criar observer apenas se não estiver visível
+    observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasIntersected) {
           setIsIntersecting(true)
           setHasIntersected(true)
-          // Desconectar após primeira interseção para melhor performance
-          observer.disconnect()
+          if (observerRef.current) {
+            observerRef.current.disconnect()
+          }
         }
       },
       {
@@ -27,13 +49,15 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
       }
     )
 
-    observer.observe(element)
+    observerRef.current.observe(element)
 
     return () => {
-      observer.disconnect()
+      if (observerRef.current) {
+        observerRef.current.disconnect()
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasIntersected])
+  }, [])
 
   return [elementRef, isIntersecting] as const
 }
