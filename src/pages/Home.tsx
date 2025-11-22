@@ -119,7 +119,7 @@ const Header = () => {
               loading="eager"
               width="100"
               height="40"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="sync"
             />
           </div>

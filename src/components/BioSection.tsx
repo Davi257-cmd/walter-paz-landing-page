@@ -66,7 +66,7 @@ export const BioSection = ({
                   width="300"
                   height="300"
                   decoding="async"
-                  fetchpriority="low"
+                  fetchPriority="low"
                 />
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

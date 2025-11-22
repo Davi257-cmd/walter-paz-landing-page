@@ -40,7 +40,7 @@ export function AvatarCircles({
               width="48"
               height="48"
               decoding="async"
-              fetchpriority={index === 0 ? "low" : "auto"}
+              fetchPriority={index === 0 ? "low" : "auto"}
             />
           </div>
         ))}
