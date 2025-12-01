@@ -276,7 +276,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section - Futuristic Hero */}
-      <section id="home" className="relative min-h-screen overflow-hidden bg-black">
+      <section id="home" className="relative h-[80vh] md:min-h-screen overflow-hidden bg-black">
         {/* Content */}
         <div className="relative z-10">
           <FuturisticHero 

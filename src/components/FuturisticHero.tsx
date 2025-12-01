@@ -44,7 +44,7 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
   // }, []);
 
   return (
-    <div className="h-screen relative overflow-hidden">
+    <div className="h-[80vh] md:h-screen relative overflow-hidden">
       {/* Grid pattern estático - sem animação para melhor performance */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div 
@@ -60,7 +60,7 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 h-screen flex items-center justify-center px-4">
+      <div className="relative z-10 h-[80vh] md:h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* Title - Completamente estático, sem animação */}
           <h1 className="font-extrabold mb-6 text-white" style={{ animation: 'none', transition: 'none', fontSize: '27px' }}>
