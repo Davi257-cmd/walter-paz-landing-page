@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, memo, useRef } from 'react'
+import { useState, useEffect, useMemo, memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TrendingUp, Users, Target, Phone, Menu, X, ChevronDown } from 'lucide-react'
 
@@ -198,17 +198,10 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeFilter, setActiveFilter] = useState('conversas')
   const [expandedFaqs, setExpandedFaqs] = useState<number[]>([]) // Array of expanded FAQ indices
-  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
-
-  const handleVideoLoadedData = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {})
-    }
-  }
 
   const toggleFaq = (index: number) => {
     setExpandedFaqs(prev => 
@@ -282,30 +275,17 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Header />
 
-      {/* Hero Section - Futuristic Hero with Video Background */}
+      {/* Hero Section - Futuristic Hero */}
       <section id="home" className="relative min-h-screen overflow-hidden bg-black">
-        {/* Video Background - z-0 */}
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          onLoadedData={handleVideoLoadedData}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          style={{ filter: 'brightness(0.5)' }}
-        >
-          <source src="/video/background.mp4" type="video/mp4" />
-        </video>
-        
-        {/* Overlay - z-1 */}
-        <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none" />
-        
-        {/* Content overlay - positioned above video background */}
+        {/* Content */}
         <div className="relative z-10">
           <FuturisticHero 
-            title="Não conte com a sorte, invista em Tráfego Pago"
+            title={
+              <>
+                Não conte com a sorte<br />
+                invista em <span className="text-red-600">Tráfego pago</span>
+              </>
+            }
             subtitle="Descubra como receber clientes qualificados todos os dias no seu WhatsApp querendo comprar."
             ctaText="Fale comigo no WhatsApp"
             onCtaClick={() => {

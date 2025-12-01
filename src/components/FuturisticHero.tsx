@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import React from 'react';
 
 export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
-  title: string
+  title: string | React.ReactNode
   subtitle: string
   ctaText: string
   onCtaClick?: () => void
