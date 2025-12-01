@@ -63,7 +63,7 @@ export const FuturisticHero = ({ title, subtitle, ctaText, onCtaClick }: {
       <div className="relative z-10 h-screen flex items-center justify-center px-4">
         <div className="text-center max-w-4xl mx-auto">
           {/* Title - Completamente estático, sem animação */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white" style={{ animation: 'none', transition: 'none' }}>
+          <h1 className="font-extrabold mb-6 text-white" style={{ animation: 'none', transition: 'none', fontSize: '27px' }}>
             {title}
           </h1>
 
