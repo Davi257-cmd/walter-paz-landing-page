@@ -277,13 +277,36 @@ export default function Home() {
 
       {/* Hero Section - Futuristic Hero */}
       <section id="home" className="relative h-[80vh] md:min-h-screen overflow-hidden bg-black">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            filter: 'brightness(0.5)',
+            willChange: 'auto',
+          }}
+          onLoadedData={(e) => {
+            const video = e.currentTarget;
+            video.play().catch(() => {});
+          }}
+        >
+          <source src="/video/background.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay leve para legibilidade */}
+        <div className="absolute inset-0 bg-black/40 z-0" />
+        
         {/* Content */}
         <div className="relative z-10">
           <FuturisticHero 
             title={
               <>
-                Não conte com a sorte<br />
-                invista em <span className="text-red-600">Tráfego pago</span>
+                Não conte com a sorte.<br />
+                Invista em <span className="text-red-600">Tráfego Pago!</span>
               </>
             }
             subtitle="Descubra como receber clientes qualificados todos os dias no seu WhatsApp querendo comprar."
@@ -309,7 +332,7 @@ export default function Home() {
         name="Walter Paz"
         title="Gestor de Tráfego Pago"
         bio="Com anos de experiência transformando investimentos em resultados reais, ajudo empresas e empreendedores a escalarem seus negócios através de estratégias avançadas de tráfego pago. Minha missão é colocar seu negócio na frente de quem realmente importa: seus clientes ideais."
-        photoUrl="/logo-walter-otmz.svg"
+        photoUrl="/bio/eu-bio.jpg"
         ctaText="Vamos conversar sobre seu negócio"
         onCtaClick={() => {
           const phoneNumber = "5585985271854"
