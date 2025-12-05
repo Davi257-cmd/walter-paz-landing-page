@@ -340,8 +340,8 @@ export default function Home() {
           window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
         }}
         stats={[
-          { value: "500+", label: "Clientes Atendidos" },
-          { value: "5M+", label: "Investidos em Ads" },
+          { value: "147+", label: "Clientes Atendidos" },
+          { value: "300mil", label: "Investidos em Ads" },
           { value: "400%", label: "ROI Médio" }
         ]}
       />

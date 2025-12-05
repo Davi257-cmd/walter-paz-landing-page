@@ -61,7 +61,7 @@ export const BioSection = ({
                 <img
                   src={photoUrl}
                   alt={name}
-                  className="w-full h-full object-contain p-4"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                   width="300"
                   height="300"
